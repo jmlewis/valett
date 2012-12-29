@@ -10,6 +10,8 @@ Install via NPM:
 
 ## Usage
 
+	valett = require 'valett'
+
 From the Scrabble example (CoffeeScript):
 
 	valett.init words, letters
@@ -26,14 +28,14 @@ Where words is an array of acceptable words and letters is a sorted (to your pre
 
 	valett.analyze maxValue, weights, frequencyByLengthWeights, entropyWeights
 	
-maxValue is a scaling term for determining the highest possible letter value.
+ * maxValue is a scaling term for determining the highest possible letter value.
 
-weights is an object whose fields determine the relative weighting of frequency, frequency by length, and entropy when calculating letter values. The fields should sum to 1.
+ * weights is an object whose fields determine the relative weighting of frequency, frequency by length, and entropy when calculating letter values. The fields should sum to 1.
 
-frequencyByLengthWeights should be the length of the longest word in the corpus, and reflects the relative value of a letter's occurrence in words of different length. For example, in Scrabble it is particularly valuable for a letter to appear in 2, 3, 7 and 8 length words.
+ * frequencyByLengthWeights should be the length of the longest word in the corpus, and reflects the relative value of a letter's occurrence in words of different length. For example, in Scrabble it is particularly valuable for a letter to appear in 2, 3, 7 and 8 length words.
 
-entropyWeights should be length 2, and reflects the relative value of the ease of transitioning into a letter (how evenly the transition probabilities toward a letter are distributed) and out of a letter. For example, Q has a low entropy out since its transition probability distribution is highly peaked at U.
+ * entropyWeights should be length 2, and reflects the relative value of the ease of transitioning into a letter (how evenly the transition probabilities toward a letter are distributed) and out of a letter. For example, Q has a low entropy out since its transition probability distribution is highly peaked at U.
 
 ## Contact
 
-Contact [Joshua Lewis](josh@useost.com) with comments and suggestions. The code is MIT licensed and pull requests with analyses for other games or new corpus metadata are welcome!
+Contact [Joshua Lewis](mailto:josh@useost.com) with comments and suggestions. The code is MIT licensed and pull requests with analyses for other games or new corpus metadata are welcome!
