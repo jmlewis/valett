@@ -1,6 +1,12 @@
 # Valett
 
-Valett is a Node module for determining the appropriate letter and board valuations in word games. Valett analyzes the corpus of a game's legal plays and provides point values for the letters in the game based on a desired weighting of their frequency, frequency by length and the entropy of their transition probabilities.
+Valett is a Node module for determining the appropriate letter valuations in word games. Valett analyzes the corpus of a game's legal plays and provides point values for the letters in the game based on a desired weighting of their frequency, frequency by length and the entropy of their transition probabilities.
+
+An example script for determining appropriate letter values for Scrabble is in the scrabble/ directory. To run it, navigate to scrabble/ and run (with CoffeeScript installed globally):
+
+	coffee scrabble.coffee
+
+One could also use valett to calculate board difficulty in a game like Boggle (boards with neighboring letters that have a low probability of transitioning to each other are harder).
 
 ## Installation
 
@@ -24,7 +30,7 @@ From the Scrabble example (CoffeeScript):
 	
 	console.log "#{letter}: #{valett.values[valett.hash[letter]]}" for letter in letters
 	
-Where words is an array of acceptable words and letters is a sorted (to your preference) array of the unique letters in the corpus. Valett stores a hash from letters to array indices in valett.hash, and stores the computed corpus statistics in valett.metadata after valett.init. The computed values are in valett.values after valett.analyze:
+Words is an array of acceptable words and letters is a sorted (to your preference) array of the unique letters in the corpus. Valett stores a hash from letters to array indices in valett.hash, and stores the computed corpus statistics in valett.metadata after valett.init. The computed values are in valett.values after valett.analyze:
 
 	valett.analyze maxValue, weights, frequencyByLengthWeights, entropyWeights
 	
