@@ -2,7 +2,7 @@
   "name": "valett",
   "version": "0.0.1",
   "author": "Joshua Lewis <josh@useost.com>",
-  "description": "data-driven letter valuation",
+  "description": "data-driven letter valuation for word games",
   "contributors": [ 
     {
       "name": "Joshua M. Lewis",
