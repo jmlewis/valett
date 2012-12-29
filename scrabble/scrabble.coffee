@@ -4,7 +4,7 @@ words = fs.readFileSync './twl.txt', 'utf8'
 words = words.split /[^A-z]+/
 letters = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z']
 
-valett = require './valett'
+valett = require '../lib/valett'
 valett.init words, letters
 
 weights = {frequency: .34, frequencyByLength: .33, entropy: .33}
