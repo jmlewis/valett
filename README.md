@@ -12,7 +12,6 @@ Install via NPM:
 
 From the Scrabble example (CoffeeScript):
 
-	valett = require 'valett'
 	valett.init words, letters
 	
 	weights = {frequency: .34, frequencyByLength: .33, entropy: .33}
@@ -23,10 +22,8 @@ From the Scrabble example (CoffeeScript):
 	
 	console.log "#{letter}: #{valett.values[valett.hash[letter]]}" for letter in letters
 	
-Where words is an array of acceptable words and letters is a sorted array of unique letters.
+Where words is an array of acceptable words and letters is a sorted (to your preference) array of the unique letters in the corpus. Valett stores a hash from letters to array indices in valett.hash, and stores the computed corpus statistics in valett.metadata after valett.init. The computed values are in valett.values after valett.analyze:
 
-valett.analyze:
-	
 	valett.analyze maxValue, weights, frequencyByLengthWeights, entropyWeights
 	
 maxValue is a scaling term for determining the highest possible letter value.
