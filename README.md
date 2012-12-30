@@ -6,7 +6,7 @@ An example script for determining appropriate letter values for Scrabble is in t
 
 	coffee scrabble.coffee
 
-One could also use valett to calculate board difficulty in a game like Boggle (boards with neighboring letters that have a low probability of transitioning to each other are harder).
+One could also use Valett to calculate board difficulty in a game like Boggle (boards with neighboring letters that have a low probability of transitioning to each other are harder).
 
 ## Installation
 
