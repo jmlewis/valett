@@ -90,8 +90,9 @@ class Valett
 		@metadata.frequency = []
 		@metadata.frequency[i] = 0 for i in [0...@letters.length]
 		for word in @words
-			if word.length
-				@metadata.frequency[@hash[letter]]++ for letter in word
+			for letter in word
+				if @hash[letter]?
+					@metadata.frequency[@hash[letter]]++ 
 	
 	_frequencyByLength: ->
 		@metadata.frequencyByLength = []
@@ -107,7 +108,8 @@ class Valett
 		for word in @words
 			@metadata.totalFrequencyByLength[word.length - 1] += word.length
 			for letter in word
-				@metadata.frequencyByLength[@hash[letter]][word.length - 1]++
+				if @hash[letter]?
+					@metadata.frequencyByLength[@hash[letter]][word.length - 1]++
 				
 		for i in [0...@letters.length]
 			for j in [0...@metadata.maxLength]
@@ -122,15 +124,28 @@ class Valett
 
 		for word in @words
 			for letter, i in word
-				if i is 0
-					@metadata.transitionFrequency[@letters.length][@hash[letter]]++
-					@metadata.transitionFrequency[@hash[letter]][@hash[word[i + 1]]]++
-				else if i is word.length - 1
-					@metadata.transitionFrequency[@hash[word[i - 1]]][@hash[letter]]++
-					@metadata.transitionFrequency[@hash[letter]][@letters.length]++
-				else
-					@metadata.transitionFrequency[@hash[word[i - 1]]][@hash[letter]]++
-					@metadata.transitionFrequency[@hash[letter]][@hash[word[i + 1]]]++
+				prevLetter = null
+				nextLetter = null
+				curLetter = null
+				
+				if i is 0 # Start of word
+					prevLetter = @letters.length
+				else if @hash[word[i - 1]]? # Previous letter is in list
+					prevLetter = @hash[word[i - 1]]
+					
+				if i is word.length - 1 # End of word
+					nextLetter = @letters.length
+				else if @hash[word[i + 1]]? # Next letter is in list
+					nextLetter = @hash[word[i + 1]]
+					
+				if @hash[letter]? # Current letter is in list
+					curLetter = @hash[letter]
+				
+				if curLetter?
+					if prevLetter?
+						@metadata.transitionFrequency[prevLetter][curLetter]++
+					if nextLetter?
+						@metadata.transitionFrequency[curLetter][nextLetter]++
 	
 	_entropy: ->
 		inOut = []
